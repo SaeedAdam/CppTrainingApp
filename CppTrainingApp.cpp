@@ -1,51 +1,79 @@
 
 #include <iostream>
+#include <string>
 using namespace std;
+
+enum gender { male, female };
+enum status { single, married };
+enum colors { red, blue, orange, black, white, green, gray, yellow };
+
+struct str_address
+{
+	string street;
+	string city;
+	string country;
+	string zip;
+};
+struct str_car
+{
+	string brand;
+	string model;
+	short int year{};
+
+};
+struct str_person
+{
+	string full_name;
+	short int age{};
+	string phone;
+	
+	float monthly_salary = 0.0;
+	float yearly_salary = monthly_salary * 12.0f;
+
+	gender my_gender{};
+	status is_married{};
+	colors favorite_color{};
+
+	str_address address;
+	str_car my_car;
+};
+
+void read_info(str_person &person)
+{
+	cout << "Full Name?" << endl;
+	getline(cin, person.full_name);
+
+	cout << "Age?" << endl;
+	cin >> person.age;
+
+	cout << "City?" << endl;
+	cin >> person.address.city;
+
+	cout << "Country?" << endl;
+	cin.ignore(1, '\n');
+	cin >> person.address.country;
+
+	cout << "Monthly Salary?" << endl;
+	cin >> person.monthly_salary;
+}
+
+void print_info(str_person person)
+{
+	cout << "*****************\n";
+	cout << "Name: " << person.full_name << endl;
+	cout << "Age: " << person.age << " years." << endl;
+	cout << "City: " << person.address.city << endl;
+	cout << "Country: " << person.address.country << endl;
+	cout << "Monthly Salary: " << person.monthly_salary << endl;
+	cout << "Yearly Salary: " << person.monthly_salary * 12.00f << endl;
+	cout << "*****************";
+}
 
 int main()
 {
-	string name;
-	char age;
-	string city;
-	string country;
-	float monthly_salary = 0.0;
-	char gender;
-	bool is_married;
+	str_person person1;
+	read_info(person1);
+	print_info(person1);
 
-	cout << "What is your name?" << endl;
-	cin >> name;
-
-	cout << "How old are you?" << endl;
-	cin >> age;
-
-	cout << "Which city you live in?" << endl;
-	cin >> city;
-
-	cout << "Which country you live in?" << endl;
-	cin >> country;
-
-	cout << "What is your current monthly salary?" << endl;
-	cin >> monthly_salary;
-
-	cout << "Gender?" << endl;
-	cin >> gender;
-
-	cout << "Are you married? 1/0 " << endl;
-	cin >> is_married;
-
-
-	cout << "\n****************************\n";
-
-	cout << "Name: " << name << endl;
-	cout << "Age: " << age << " years." << endl;
-	cout << "City: " << city << endl;
-	cout << "Country: " << country << endl;
-	cout << "Monthly Salary: " << monthly_salary << endl;
-	cout << "Yearly Salary: " << monthly_salary * 12 << endl;
-	cout << "Gender: " << gender << endl;
-	cout << "Married : " << is_married << endl;
-	
-	cout << "****************************";
-	
 	return 0;
 }
