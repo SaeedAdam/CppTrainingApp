@@ -3,77 +3,69 @@
 #include <string>
 using namespace std;
 
-enum gender { male, female };
-enum status { single, married };
-enum colors { red, blue, orange, black, white, green, gray, yellow };
-
-struct str_address
+struct str_info
 {
-	string street;
-	string city;
-	string country;
-	string zip;
-};
-struct str_car
-{
-	string brand;
-	string model;
-	short int year{};
-
-};
-struct str_person
-{
-	string full_name;
+	string first_name;
+	string last_name;
 	short int age{};
 	string phone;
-	
-	float monthly_salary = 0.0;
-	float yearly_salary = monthly_salary * 12.0f;
-
-	gender my_gender{};
-	status is_married{};
-	colors favorite_color{};
-
-	str_address address;
-	str_car my_car;
 };
 
-void read_info(str_person &person)
+void read_info(str_info& info)
 {
-	cout << "Full Name?" << endl;
-	getline(cin, person.full_name);
+	cout << "First Name?" << endl;
+	cin >> info.first_name;
+
+	cout << "Last Name?" << endl;
+	cin >> info.last_name;
 
 	cout << "Age?" << endl;
-	cin >> person.age;
+	cin >> info.age;
 
-	cout << "City?" << endl;
-	cin >> person.address.city;
-
-	cout << "Country?" << endl;
-	cin.ignore(1, '\n');
-	cin >> person.address.country;
-
-	cout << "Monthly Salary?" << endl;
-	cin >> person.monthly_salary;
+	cout << "Phone Number?" << endl;
+	cin >> info.phone;
 }
 
-void print_info(str_person person)
+void print_info(str_info info)
 {
-	cout << "*****************\n";
-	cout << "Name: " << person.full_name << endl;
-	cout << "Age: " << person.age << " years." << endl;
-	cout << "City: " << person.address.city << endl;
-	cout << "Country: " << person.address.country << endl;
-	cout << "Monthly Salary: " << person.monthly_salary << endl;
-	cout << "Yearly Salary: " << person.monthly_salary * 12.00f << endl;
-	cout << "*****************";
+	cout << "\n*****************\n";
+	cout << "First Name: " << info.first_name << endl;
+	cout << "Last Name: " << info.last_name << endl;
+	cout << "Age: " << info.age << " years." << endl;
+	cout << "Phone Number: " << info.phone << endl;
+	cout << "\n*****************\n";
 }
+
+void read_persons(str_info persons[100], int& length)
+{
+	cout << "How many persons? " << endl;
+	cin >> length;
+
+	for (int i = 0; i < length; i++)
+	{
+		cout << "\nPlease enter persons\'s " << i+1 << " info: " << endl;
+		read_info(persons[i]);
+	}
+}
+
+void print_persons(str_info persons[100], int length)
+{
+	for (int i = 0; i < length; i++)
+	{
+		cout << "\nPerson number " << i+1 << " info: " << endl;
+		print_info(persons[i]);
+	}
+}
+
 
 int main()
 {
-	str_person person1;
-	read_info(person1);
-	print_info(person1);
+
+	str_info persons[100];
+	int length = 0;
+
+	read_persons(persons, length);
+	print_persons(persons, length);
 
 	return 0;
 }
