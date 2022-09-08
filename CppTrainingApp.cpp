@@ -152,12 +152,45 @@ void CalculateBill()
 	cout << "Remainder = " << CalculateRemainder(grandTotalBill, totalCashPaid) << endl;
 }
 
+string ReadPinCode()
+{
+	string pinCode;
+	cout << "Please enter Pin Code" << endl;
+	cin >> pinCode;
 
+	return pinCode;
+}
+bool Login()
+{
+	string pinCode;
+	int counter = 3;
 
+	do
+	{
+		 pinCode = ReadPinCode();
 
+		if (pinCode == "1234")
+		{
+			return true;
+		}
+
+		counter--;
+		cout << "\nWrong PIN. You have " << counter << " more tries.\n";
+		system("color 4F");
+		
+	}
+	while (counter >= 1 && pinCode != "1234");
+
+	cout << "\nYour account has been locked. Please contact your bank.\n";
+	return false;
+}
 
 int main()
 {
-	CalculateBill();
+	if (Login())
+	{
+		system("color 2F");
+		cout << "\nYour account balance is " << 7500 << "\nThank you\n";
+	}
 	return 0;
 }
