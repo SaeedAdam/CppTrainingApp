@@ -11,8 +11,10 @@ struct str_info
 	string phone;
 };
 
-void read_info(str_info& info)
+str_info read_info()
 {
+	str_info info;
+
 	cout << "First Name?" << endl;
 	cin >> info.first_name;
 
@@ -24,6 +26,8 @@ void read_info(str_info& info)
 
 	cout << "Phone Number?" << endl;
 	cin >> info.phone;
+
+	return info;
 }
 
 void print_info(str_info info)
@@ -36,36 +40,124 @@ void print_info(str_info info)
 	cout << "\n*****************\n";
 }
 
-void read_persons(str_info persons[100], int& length)
+short int ReadIntNumberInRange(int from, int to)
 {
-	cout << "How many persons? " << endl;
-	cin >> length;
-
-	for (int i = 0; i < length; i++)
+	short int num;
+	
+	do
 	{
-		cout << "\nPlease enter persons\'s " << i+1 << " info: " << endl;
-		read_info(persons[i]);
-	}
+		cout << "Please enter a number between " << from << " and " << to << endl;
+		cin >> num;
+
+	} while (num < from || num > to);
+	
+
+	return num;
 }
 
-void print_persons(str_info persons[100], int length)
+void SumOfBillsBelowGivenAmount(int numOfBills, float amount)
 {
-	for (int i = 0; i < length; i++)
+	int num = 0;
+	float sum = 0.0f;
+
+	cout << "You will only pay the bills that are above " << amount << " riyals." << endl;
+	cout << "Any bill that is less than " << amount << " riyals will be free!" << endl;
+	cout << "\n";
+
+	for (int i = 1; i <= numOfBills; i++)
 	{
-		cout << "\nPerson number " << i+1 << " info: " << endl;
-		print_info(persons[i]);
+		cout << "Bill No. " << i << " - Please enter the amount: " << endl;
+		cin >> num;
+
+		if (num < amount)
+		{
+			cout << "We will not count bill No. " << i << ". It's FREE!" << endl;
+			continue;
+		}
+
+		sum += num;
 	}
+
+	cout << "\nThe total amount is: " << sum << " riyals." << endl;
+	cout << "\nThank you for using our service." << endl;
 }
+
+string ReadName()
+{
+	string name;
+
+	cout << "Please enter your name? " << endl;
+	cin >> name;
+
+	return name;
+}
+void PrintName(string name)
+{
+	cout << "Your name is: " << name << endl;
+}
+
+float CalculateAverage(int num1, int num2, int num3)
+{
+	return float(num1 + num2 + num3) / 3.0f;
+}
+
+float ReadPositiveNumber(string message)
+{
+	int num = 0;
+	do
+	{
+		cout << message << endl;
+		cin >> num;
+	}
+	while (num <= 0);
+
+	return num;
+}
+
+float CalculateRemainder(float totalBill, float totalCashPaid)
+{
+	return totalCashPaid - totalBill;
+}
+
+float AddServiceFees(float amount)
+{
+	return amount * 1.1f;
+}
+float AddTaxes(float amount)
+{
+	return amount * 1.16f;
+}
+float AddAllFees(float amount)
+{
+	float grandTotal = amount;
+
+	grandTotal = AddServiceFees(grandTotal);
+	grandTotal = AddTaxes(grandTotal);
+
+	return grandTotal;
+}
+
+void CalculateBill()
+{
+	float totalBill = ReadPositiveNumber("Please enter total bill?");
+	float grandTotalBill = AddAllFees(totalBill);
+	float totalCashPaid = ReadPositiveNumber("Please enter total cash paid?");
+	cout << endl;
+
+	cout << "Total bill = " << totalBill << endl;
+	cout << "Grand Total after Services and Taxes = " << grandTotalBill << endl;
+	cout << "Total cash paid = " << totalCashPaid << endl;
+
+	cout << "**************************\n";
+	cout << "Remainder = " << CalculateRemainder(grandTotalBill, totalCashPaid) << endl;
+}
+
+
+
 
 
 int main()
 {
-
-	str_info persons[100];
-	int length = 0;
-
-	read_persons(persons, length);
-	print_persons(persons, length);
-
+	CalculateBill();
 	return 0;
 }
