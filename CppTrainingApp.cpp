@@ -185,12 +185,3 @@ bool Login()
 	return false;
 }
 
-int main()
-{
-	if (Login())
-	{
-		system("color 2F");
-		cout << "\nYour account balance is " << 7500 << "\nThank you\n";
-	}
-	return 0;
-}
