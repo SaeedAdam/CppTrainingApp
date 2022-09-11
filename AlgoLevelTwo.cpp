@@ -257,7 +257,7 @@ void PrintNumberPattern(int number)
 void PrintInvertedLetterPattern(int number)
 {
 	cout << "-----------" << endl;
-	for (int i = number+64; i > 64; i--)
+	for (int i = number + 64; i > 64; i--)
 	{
 		for (int j = 64; j < i; j++)
 		{
@@ -312,7 +312,7 @@ string ReadText()
 bool Guess3LetterPassword(string input)
 {
 	string word;
-	int counter = {0};
+	int counter = { 0 };
 
 	for (int i = 65; i <= 90; i++)
 	{
@@ -398,15 +398,119 @@ char GetRandomCharacter(enuCharType charType)
 	}
 }
 
+// Problem #21
+string GenerateWord(enuCharType charType, short length)
+{
+	string chars;
+
+	for (int i = 1; i <= length; i++)
+	{
+		chars += GetRandomCharacter(charType);
+	}
+
+	return chars;
+}
+string GenerateKey()
+{
+	string key;
+
+	for (int i = 1; i <= 4; i++)
+	{
+		key += GenerateWord(CapitalLetter, 4);
+
+		if (i < 4)
+		{
+			key += '-';
+		}
+	}
+
+	return key;
+}
+string GenerateKeys(int numberOfKeys)
+{
+	string key;
+
+	for (int i = 1; i <= numberOfKeys; i++)
+	{
+		key += GenerateKey();
+
+		cout << "Key[" << i << "]: " << key << endl;
+
+		key = "";
+	}
+
+	return key;
+}
+
+// Problem #22
+// My Solution 
+int* LoadArray(int numberOfElements)
+{
+
+	static int arr[100];
+
+	for (int i = 0; i < numberOfElements; i++)
+	{
+		cout << "Element [" << i + 1 << "]: ";
+		cin >> arr[i];
+	}
+
+	return arr;
+}
+void CheckNumberInArray(int NumberToCheck, int numberOfElements)
+{
+	int* myArray;
+	myArray = LoadArray(numberOfElements);
+	int counter = 0;
+
+
+	cout << "Original array: ";
+
+	for (int i = 0; i < numberOfElements; i++)
+	{
+		cout << myArray[i] << " ";
+
+		if (NumberToCheck == myArray[i])
+		{
+			counter++;
+		}
+	}
+	cout << endl;
+	cout << NumberToCheck << " is repeated " << counter << " Time(s)" << endl;
+}
+// The instructor solution (It's better than mine due to being more reusable)
+void ReadArray(int arr[100], int& arrLength)
+{
+	cout << "\nEnter number of elements:\n";
+	cin >> arrLength;
+
+	cout << "\nEnter array elements: \n";
+
+	for (int i = 0; i < arrLength; i++)
+	{
+		cout << "Element [" << i + 1 << "] : ";
+		cin >> arr[i];
+	}
+
+	cout << endl;
+}
+void PrintArray(int arr[100], int arrLength)
+{
+	for (int i = 0; i < arrLength; i++)
+		cout << arr[i] << " ";
+	cout << "\n";
+}
+
+// Problem #23
+
+
 
 //---------------------------------------------------//
 
 int main()
 {
-	cout << GetRandomCharacter(SmallLetter) << endl;
-	cout << GetRandomCharacter(CapitalLetter) << endl;
-	cout << GetRandomCharacter(SpecialCharacter) << endl;
-	cout << GetRandomCharacter(Digit) << endl;
+
+	CheckNumberInArray(ReadPositiveNumber("Enter the size of array: "), ReadPositiveNumber("Enter the number you want to check: "));
 
 	return 0;
 }
