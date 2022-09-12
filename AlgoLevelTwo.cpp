@@ -395,6 +395,9 @@ char GetRandomCharacter(enuCharType charType)
 		return char(RandomNumber(33, 47));
 	case Digit:
 		return char(RandomNumber(48, 57));
+	default:
+		return '.';
+
 	}
 }
 
@@ -502,6 +505,172 @@ void PrintArray(int arr[100], int arrLength)
 }
 
 // Problem #23
+void LoadArrayWithRandomNumbers(int arr[100], int numberOfElements)
+{
+	for (int i = 0; i < numberOfElements; i++)
+	{
+		arr[i] = RandomNumber(1, 100);
+	}
+
+	cout << "Array elements: \n";
+	PrintArray(arr, numberOfElements);
+}
+
+// Problem #24
+int MaxNumberInArray(int array[100], int arrLength)
+{
+	int maxNumber = 0;
+
+	for (int i = 0; i < arrLength; i++)
+	{
+		if (array[i] > maxNumber)
+		{
+			maxNumber = array[i];
+		}
+	}
+
+	return maxNumber;
+}
+void LoadArrayWithRandomNumbers2(int numberOfElements)
+{
+	int arr[100];
+
+	for (int i = 0; i < numberOfElements; i++)
+	{
+		arr[i] = RandomNumber(1, 100);
+	}
+
+	cout << "Array elements: ";
+	PrintArray(arr, numberOfElements);
+	cout << endl;
+	cout << "Max number is: " << MaxNumberInArray(arr, numberOfElements);
+}
+
+// Problem #25
+int MinNumberInArray(int array[100], int arrLength)
+{
+	int minNumber = 0;
+	minNumber = array[0];
+
+	for (int i = 0; i < arrLength; i++)
+	{
+		if (array[i] < minNumber)
+		{
+			minNumber = array[i];
+		}
+	}
+
+	return minNumber;
+}
+void LoadArrayWithRandomNumbers3(int numberOfElements)
+{
+	int arr[100];
+
+	for (int i = 0; i < numberOfElements; i++)
+	{
+		arr[i] = RandomNumber(1, 100);
+	}
+
+	cout << "Array elements: ";
+	PrintArray(arr, numberOfElements);
+	cout << endl;
+	cout << "Min number is: " << MinNumberInArray(arr, numberOfElements);
+}
+
+// Problem #26
+int SumArray(int array[100], int arrLength)
+{
+	int sum = 0;
+
+	for (int i = 0; i < arrLength; i++)
+	{
+		sum += array[i];
+	}
+
+	return sum;
+}
+void LoadArrayWithRandomNumbers4(int numberOfElements)
+{
+	int arr[100];
+
+	for (int i = 0; i < numberOfElements; i++)
+	{
+		arr[i] = RandomNumber(1, 100);
+	}
+
+	cout << "Array elements: ";
+	PrintArray(arr, numberOfElements);
+	cout << endl;
+	cout << "Sum is: " << SumArray(arr, numberOfElements);
+}
+
+// Problem #27
+float AverageOfArray(int arr[100], int arrLength)
+{
+	return float(SumArray(arr, arrLength)) / float(arrLength);
+}
+void LoadArrayWithRandomNumbers5(int numberOfElements)
+{
+	int arr[100];
+
+	for (int i = 0; i < numberOfElements; i++)
+	{
+		arr[i] = RandomNumber(1, 100);
+	}
+
+	cout << "Array elements: ";
+	PrintArray(arr, numberOfElements);
+	cout << endl;
+	cout << "Average is: " << AverageOfArray(arr, numberOfElements);
+}
+
+// Problem #28
+void CopyArray(int arr[100], int arrLength)
+{
+	int arrTwo[100];
+
+	for (int i = 0; i < arrLength; i++)
+	{
+		arrTwo[i] = arr[i];
+	}
+
+	cout << "Array 2 elements after copy: \n";
+	PrintArray(arr, arrLength);
+}
+
+// Problem #29
+void CopyPrimeNumbersFromArray(int arr[100], int arrLength)
+{
+	int arrTwo[100];
+	int indexCounter = 0;
+
+	for (int i = 0; i < arrLength; i++)
+	{
+		if (IsPrime(arr[i]))
+		{
+			arrTwo[indexCounter] = arr[i];
+			indexCounter++;
+		}
+	}
+
+	cout << "Prime Number in Array 2: \n";
+	PrintArray(arrTwo, indexCounter-1);
+}
+
+// Problem #30
+void SumOfTwoArrays(int arr1[], int arr2[], int arrLength)
+{
+	int arr3[100];
+
+	for (int i = 0; i < arrLength; i++)
+	{
+		arr3[i] = arr1[i] + arr2[i];
+	}
+
+	cout << "Sum of array1 and array2 elements: \n";
+	PrintArray(arr3, arrLength);
+}
+
 
 
 
@@ -509,8 +678,17 @@ void PrintArray(int arr[100], int arrLength)
 
 int main()
 {
+	srand((unsigned)time(NULL));
 
-	CheckNumberInArray(ReadPositiveNumber("Enter the size of array: "), ReadPositiveNumber("Enter the number you want to check: "));
+	int arr1[100];
+	int arr2[100];
+	const int arrLength = ReadPositiveNumber("Please enter the number of elements: ");
+
+	cout << "(1) "; LoadArrayWithRandomNumbers(arr1, arrLength);
+	cout << endl;
+	cout << "(2) "; LoadArrayWithRandomNumbers(arr2, arrLength);
+	cout << endl;
+	SumOfTwoArrays(arr1, arr2, arrLength);
 
 	return 0;
 }
