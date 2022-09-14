@@ -447,12 +447,12 @@ string GenerateKeys(int numberOfKeys)
 
 // Problem #22
 // My Solution 
-int* LoadArray(int numberOfElements)
+int* LoadArray(int arrLength)
 {
 
 	static int arr[100];
 
-	for (int i = 0; i < numberOfElements; i++)
+	for (int i = 0; i < arrLength; i++)
 	{
 		cout << "Element [" << i + 1 << "]: ";
 		cin >> arr[i];
@@ -460,16 +460,16 @@ int* LoadArray(int numberOfElements)
 
 	return arr;
 }
-void CheckNumberInArray(int NumberToCheck, int numberOfElements)
+void CheckNumberInArray(int NumberToCheck, int arrLength)
 {
 	int* myArray;
-	myArray = LoadArray(numberOfElements);
+	myArray = LoadArray(arrLength);
 	int counter = 0;
 
 
 	cout << "Original array: ";
 
-	for (int i = 0; i < numberOfElements; i++)
+	for (int i = 0; i < arrLength; i++)
 	{
 		cout << myArray[i] << " ";
 
@@ -505,15 +505,15 @@ void PrintArray(int arr[100], int arrLength)
 }
 
 // Problem #23
-void LoadArrayWithRandomNumbers(int arr[100], int numberOfElements)
+void LoadArrayWithRandomNumbers(int arr[100], int arrLength)
 {
-	for (int i = 0; i < numberOfElements; i++)
+	for (int i = 0; i < arrLength; i++)
 	{
 		arr[i] = RandomNumber(1, 100);
 	}
 
 	cout << "Array elements: \n";
-	PrintArray(arr, numberOfElements);
+	PrintArray(arr, arrLength);
 }
 
 // Problem #24
@@ -531,19 +531,19 @@ int MaxNumberInArray(int array[100], int arrLength)
 
 	return maxNumber;
 }
-void LoadArrayWithRandomNumbers2(int numberOfElements)
+void LoadArrayWithRandomNumbers2(int arrLength)
 {
 	int arr[100];
 
-	for (int i = 0; i < numberOfElements; i++)
+	for (int i = 0; i < arrLength; i++)
 	{
 		arr[i] = RandomNumber(1, 100);
 	}
 
 	cout << "Array elements: ";
-	PrintArray(arr, numberOfElements);
+	PrintArray(arr, arrLength);
 	cout << endl;
-	cout << "Max number is: " << MaxNumberInArray(arr, numberOfElements);
+	cout << "Max number is: " << MaxNumberInArray(arr, arrLength);
 }
 
 // Problem #25
@@ -562,19 +562,19 @@ int MinNumberInArray(int array[100], int arrLength)
 
 	return minNumber;
 }
-void LoadArrayWithRandomNumbers3(int numberOfElements)
+void LoadArrayWithRandomNumbers3(int arrLength)
 {
 	int arr[100];
 
-	for (int i = 0; i < numberOfElements; i++)
+	for (int i = 0; i < arrLength; i++)
 	{
 		arr[i] = RandomNumber(1, 100);
 	}
 
 	cout << "Array elements: ";
-	PrintArray(arr, numberOfElements);
+	PrintArray(arr, arrLength);
 	cout << endl;
-	cout << "Min number is: " << MinNumberInArray(arr, numberOfElements);
+	cout << "Min number is: " << MinNumberInArray(arr, arrLength);
 }
 
 // Problem #26
@@ -589,19 +589,19 @@ int SumArray(int array[100], int arrLength)
 
 	return sum;
 }
-void LoadArrayWithRandomNumbers4(int numberOfElements)
+void LoadArrayWithRandomNumbers4(int arrLength)
 {
 	int arr[100];
 
-	for (int i = 0; i < numberOfElements; i++)
+	for (int i = 0; i < arrLength; i++)
 	{
 		arr[i] = RandomNumber(1, 100);
 	}
 
 	cout << "Array elements: ";
-	PrintArray(arr, numberOfElements);
+	PrintArray(arr, arrLength);
 	cout << endl;
-	cout << "Sum is: " << SumArray(arr, numberOfElements);
+	cout << "Sum is: " << SumArray(arr, arrLength);
 }
 
 // Problem #27
@@ -609,19 +609,19 @@ float AverageOfArray(int arr[100], int arrLength)
 {
 	return float(SumArray(arr, arrLength)) / float(arrLength);
 }
-void LoadArrayWithRandomNumbers5(int numberOfElements)
+void LoadArrayWithRandomNumbers5(int arrLength)
 {
 	int arr[100];
 
-	for (int i = 0; i < numberOfElements; i++)
+	for (int i = 0; i < arrLength; i++)
 	{
 		arr[i] = RandomNumber(1, 100);
 	}
 
 	cout << "Array elements: ";
-	PrintArray(arr, numberOfElements);
+	PrintArray(arr, arrLength);
 	cout << endl;
-	cout << "Average is: " << AverageOfArray(arr, numberOfElements);
+	cout << "Average is: " << AverageOfArray(arr, arrLength);
 }
 
 // Problem #28
@@ -654,7 +654,7 @@ void CopyPrimeNumbersFromArray(int arr[100], int arrLength)
 	}
 
 	cout << "Prime Number in Array 2: \n";
-	PrintArray(arrTwo, indexCounter-1);
+	PrintArray(arrTwo, indexCounter - 1);
 }
 
 // Problem #30
@@ -671,6 +671,94 @@ void SumOfTwoArrays(int arr1[], int arr2[], int arrLength)
 	PrintArray(arr3, arrLength);
 }
 
+// Problem #31
+void Swap(int& a, int& b)
+{
+	int temp;
+
+	temp = a;
+	a = b;
+	b = temp;
+}
+void LoadArrayWithOrderedNumbers(int arr[100], int arrLength)
+{
+	for (int i = 0; i < arrLength; i++)
+	{
+		arr[i] = i + 1;
+	}
+
+	cout << "Array elements: \n";
+	PrintArray(arr, arrLength);
+}
+void ShuffleArrayElements(int arr[100], int arrLength)
+{
+	for (int i = 0; i < arrLength; i++)
+	{
+		Swap(arr[RandomNumber(1, arrLength) - 1], arr[RandomNumber(1, arrLength) - 1]);
+	}
+}
+
+// Problem #32
+void ReverseCopyArray(int arr[100], int arrLength)
+{
+	int min = 0;
+	int max = arrLength - 1;
+
+	for (int i = 0; i < arrLength / 2; i++)
+	{
+		if (min < max)
+		{
+			swap(arr[min], arr[max]);
+
+			min++;
+			max--;
+		}
+	}
+
+	cout << "Array 2 elements after copy and reverse: \n";
+	PrintArray(arr, arrLength);
+}
+
+// Problem #33
+void FillArrayWithKeys(string arr[100], int arrLength)
+{
+	for (int i = 0; i < arrLength; i++)
+		arr[i] = GenerateKey();
+}
+void PrintStringArray(string arr[100], int arrLength)
+{
+	for (int i = 0; i < arrLength; i++)
+		cout << "Key[" << i << "]: " << arr[i] << endl;
+	cout << "\n";
+}
+
+// Problem #34
+int ReturnNumberIndex(int number, int arr[100], int arrLength)
+{
+	for (int i = 0; i < arrLength; i++)
+	{
+		if (arr[i] == number)
+		{
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+// Problem #35
+bool IsNumberInArray(int number, int arr[100], int arrLength)
+{
+	if (ReturnNumberIndex(number, arr, arrLength) == -1)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+// Problem #36
+
 
 
 
@@ -678,17 +766,28 @@ void SumOfTwoArrays(int arr1[], int arr2[], int arrLength)
 
 int main()
 {
-	srand((unsigned)time(NULL));
+	srand((unsigned)time(nullptr));
 
-	int arr1[100];
-	int arr2[100];
-	const int arrLength = ReadPositiveNumber("Please enter the number of elements: ");
+	int arr[100];
+	const int arrLength = ReadPositiveNumber("Enter number of number of elements: ");
 
-	cout << "(1) "; LoadArrayWithRandomNumbers(arr1, arrLength);
+	LoadArrayWithRandomNumbers(arr, arrLength);
+
 	cout << endl;
-	cout << "(2) "; LoadArrayWithRandomNumbers(arr2, arrLength);
-	cout << endl;
-	SumOfTwoArrays(arr1, arr2, arrLength);
+
+	int number = ReadPositiveNumber("Please enter the number to search for: ");
+
+
+	cout << "Number you are looking for is: " << number << endl;
+
+	if (IsNumberInArray(number, arr, arrLength))
+	{
+		cout << "The number is found :-)" << endl;
+	}
+	else
+	{
+		cout << "The number is not found :-( " << endl;
+	}
 
 	return 0;
 }
