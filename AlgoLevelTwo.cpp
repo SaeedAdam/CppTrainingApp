@@ -758,7 +758,42 @@ bool IsNumberInArray(int number, int arr[100], int arrLength)
 }
 
 // Problem #36
+void AddArrayElement(int Number, int arr[100], int& arrLength)
+{ //its a new element so we need to add the length by1
+	arrLength++;
+	arr[arrLength - 1] = Number;
+}
+void InputUserNumbersInArray(int arr[100], int& arrLength)
+{
+	bool AddMore = true;
 
+	do {
+		AddArrayElement(ReadPositiveNumber("\nPlease Enter a number:  "), arr, arrLength);
+		cout << "Do you want to add more numbers? [0]:No,[1]:yes? ";
+		cin >> AddMore;
+
+	} while (AddMore);
+}
+
+// Problem #37
+void CopyArrayV2(int arr[100])
+{
+	int newArr[100];
+	int arrLength = 0;
+
+	for (int i = 0; i < ; i++)
+	{
+		AddArrayElement(arr[i], newArr, arrLength);
+	}
+}
+
+void FillArrayWithRandomNumbers(int arr[100], int& arrLength)
+{
+	cout << "\nEnter number of elements:\n";
+	cin >> arrLength;
+	for (int i = 0; i < arrLength; i++) 
+		arr[i] = RandomNumber(1, 100);
+}
 
 
 
@@ -766,28 +801,19 @@ bool IsNumberInArray(int number, int arr[100], int arrLength)
 
 int main()
 {
-	srand((unsigned)time(nullptr));
+	//srand((unsigned)time(nullptr));
 
-	int arr[100];
-	const int arrLength = ReadPositiveNumber("Enter number of number of elements: ");
+	int arr[10] = { 1,5,46,65,4,2,99,4,3,22 };
 
-	LoadArrayWithRandomNumbers(arr, arrLength);
+	PrintArray(arr, 10);
 
 	cout << endl;
 
-	int number = ReadPositiveNumber("Please enter the number to search for: ");
+	CopyArrayV2(arr);
 
 
-	cout << "Number you are looking for is: " << number << endl;
 
-	if (IsNumberInArray(number, arr, arrLength))
-	{
-		cout << "The number is found :-)" << endl;
-	}
-	else
-	{
-		cout << "The number is not found :-( " << endl;
-	}
+
 
 	return 0;
 }
